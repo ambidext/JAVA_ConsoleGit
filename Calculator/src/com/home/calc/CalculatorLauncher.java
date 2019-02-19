@@ -16,6 +16,7 @@ public class CalculatorLauncher {
             input = "0" + input;
 
         // 숫자 추출  
+        int PlusMinus = 1;
         for (int i = 0; i < input.length(); i++)
         {
             if (input.charAt(i) >= '0' && input.charAt(i) <= '9')
@@ -24,14 +25,26 @@ public class CalculatorLauncher {
             }
             else // +-*/ 기호 
             {
-            	numStack.push(strNum);
-                strNum = "";
-                numStack.push(input.charAt(i)+"");
+            	if (!strNum.equals(""))
+            	    numStack.push(Integer.parseInt(strNum)*(PlusMinus)+"");
+            	
+            	if (numStack.peek().equals("*") || numStack.peek().equals("/") || numStack.peek().equals("+") || numStack.peek().equals("-"))
+            	{
+            		if (input.charAt(i) == '-')
+            			PlusMinus = -1;
+            		else 
+            			PlusMinus = 1;
+            	}
+            	else 
+            	{
+            		numStack.push(input.charAt(i)+"");            		
+            	}
+                strNum = "";                
             }
         }
         if (strNum != "")
         {                
-        	numStack.push(strNum);
+        	numStack.push(Integer.parseInt(strNum)*(PlusMinus)+"");
         }
 
         // 곱하기, 나누기 처리 
@@ -420,7 +433,7 @@ public class CalculatorLauncher {
     }
     
 	public static void main(String[] args) {		
-        String NormalInput = "12+3*(7+3*2)+19/(3*(3/2))";// "-2+5*7+19/((2+1)*(2+1))";//
+        String NormalInput = "-3-(-3)";//"12+3*(7+3*2)+19/(3*(3/2))";// "-2+5*7+19/((2+1)*(2+1))";//
         String ProgrammerInput = "11b+(0x11*10b+1)-9";//"10b+0x23+9/3";//
         String EngineeringInput = "-0.123+2^(1/2)+SIN((40+5)*SIN(89+SIN(90)))+LOG(2*3+4)+5!";//"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; //"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; // 
 
