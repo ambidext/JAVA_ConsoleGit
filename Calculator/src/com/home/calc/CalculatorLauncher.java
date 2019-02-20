@@ -5,6 +5,12 @@ import java.util.Stack;
 
 public class CalculatorLauncher {
 
+	static boolean IsSymbol(String sym)
+	{
+		if (sym.equals("*") || sym.equals("/") || sym.equals("+") || sym.equals("-") || sym.equals("^"))
+			return true;
+		return false;
+	}
     static String IntCalc(String input)
     {
         String result = "";
@@ -28,7 +34,7 @@ public class CalculatorLauncher {
             	if (!strNum.equals(""))
             	    numStack.push(Integer.parseInt(strNum)*(PlusMinus)+"");
             	
-            	if (numStack.peek().equals("*") || numStack.peek().equals("/") || numStack.peek().equals("+") || numStack.peek().equals("-"))
+            	if (IsSymbol(numStack.peek()))
             	{
             		if (input.charAt(i) == '-')
             			PlusMinus = -1;
@@ -54,7 +60,7 @@ public class CalculatorLauncher {
         for (int i=0; i<len; i++)
         {
         	String item = numStack.pop();
-            if (item.equals("*") || item.equals("/") || item.equals("+") || item.equals("-"))
+            if (IsSymbol(item))
             {
                 calcStack.push(item);
             }
@@ -115,7 +121,7 @@ public class CalculatorLauncher {
         return result;
     }
 
-    static String NormalCalc(String input)
+    static String integerCalc(String input)
     {
         String result = null;
         //------------------------------
@@ -215,7 +221,7 @@ public class CalculatorLauncher {
         if (strNum != "")
             numQ = numQ + Conv10(strNum);
 
-        String decRes = NormalCalc(numQ);
+        String decRes = integerCalc(numQ);
         int resNum = Integer.parseInt(decRes);
         String hexRes = "0x" + Integer.toHexString(resNum).toUpperCase();
         String binRes = Integer.toBinaryString(resNum) + "b"; 
@@ -305,7 +311,7 @@ public class CalculatorLauncher {
         for (int i=0; i<len; i++)
         {
         	String item = numStack.pop();
-            if (item.equals("*") || item.equals("/") || item.equals("+") || item.equals("-") || item.equals("^"))
+            if (IsSymbol(item))
             {
                 calcStack.push(item);
             }
@@ -433,17 +439,17 @@ public class CalculatorLauncher {
     }
     
 	public static void main(String[] args) {		
-        String NormalInput = "-3-(-3)";//"12+3*(7+3*2)+19/(3*(3/2))";// "-2+5*7+19/((2+1)*(2+1))";//
+        String NormalInput = "-3/-3";//"12+3*(7+3*2)+19/(3*(3/2))";// "-2+5*7+19/((2+1)*(2+1))";//
         String ProgrammerInput = "11b+(0x11*10b+1)-9";//"10b+0x23+9/3";//
         String EngineeringInput = "-0.123+2^(1/2)+SIN((40+5)*SIN(89+SIN(90)))+LOG(2*3+4)+5!";//"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; //"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; // 
 
         System.out.println("Normal Calculator: " + NormalInput);
-        System.out.println(NormalCalc(NormalInput));
+        System.out.println(integerCalc(NormalInput));
         System.out.println();
         System.out.println("Programmer Calculator: " + ProgrammerInput);
         System.out.println(ProgrammerCalc(ProgrammerInput));
         System.out.println();
         System.out.println("Engineering Calculator: " + EngineeringInput);
-        System.out.printf("%.3f", Double.parseDouble(EngineeringCalc(EngineeringInput)));
+        System.out.println(EngineeringCalc(EngineeringInput));
 	}
 }
