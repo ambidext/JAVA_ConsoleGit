@@ -139,6 +139,8 @@ public class CalculatorLauncher {
                     if (temp.equals("("))
                     {
                         String dc = IntCalc(inBrace);
+                        if (dc.equals("INF"))
+                            return "INF";                        
                         for (int c = 0; c<dc.length(); c++) 
                         {
                             charStack.push(dc.charAt(c)+"");
@@ -222,6 +224,8 @@ public class CalculatorLauncher {
             numQ = numQ + Conv10(strNum);
 
         String decRes = integerCalc(numQ);
+        if (decRes.equals("INF"))
+            return "INF";        
         int resNum = Integer.parseInt(decRes);
         String hexRes = "0x" + Integer.toHexString(resNum).toUpperCase();
         String binRes = Integer.toBinaryString(resNum) + "b"; 
@@ -293,7 +297,9 @@ public class CalculatorLauncher {
             else // +-*/ ±âÈ£ 
             {
                 Double dNum = GetTriValue(strNum);
-
+                if (!strNum.equals(""))
+                    dNum = GetTriValue(strNum);
+                
                 numStack.push(dNum.toString());
                 strNum = "";
                 numStack.push(input.charAt(i)+"");
@@ -405,6 +411,9 @@ public class CalculatorLauncher {
                     if (temp.charAt(0) == '(')
                     {
                         String dc = DoubleCalc(inBrace);
+                        if (dc.equals("INF"))
+                            return "INF";
+                        
                         for(int c = 0; c<dc.length(); c++)
                         {
                             charStack.push(dc.charAt(c)+"");
@@ -431,6 +440,8 @@ public class CalculatorLauncher {
             str = str + item;
         }
         result = DoubleCalc(str);
+        if (result.equals("INF"))
+            return "INF";        
         double dRes = Double.parseDouble(result);
         result = String.format("%.3f", dRes);
         //------------------------------
@@ -439,9 +450,9 @@ public class CalculatorLauncher {
     }
     
 	public static void main(String[] args) {		
-        String NormalInput = "-3/-3";//"12+3*(7+3*2)+19/(3*(3/2))";// "-2+5*7+19/((2+1)*(2+1))";//
-        String ProgrammerInput = "11b+(0x11*10b+1)-9";//"10b+0x23+9/3";//
-        String EngineeringInput = "-0.123+2^(1/2)+SIN((40+5)*SIN(89+SIN(90)))+LOG(2*3+4)+5!";//"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; //"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; // 
+        String NormalInput = "-3/0";//"12+3*(7+3*2)+19/(3*(3/2))";// "-2+5*7+19/((2+1)*(2+1))";//
+        String ProgrammerInput = "1/(5*2-10)"; //"11b+(0x11*10b+1)-9";//"10b+0x23+9/3";//
+        String EngineeringInput = "5/(2.0-2.0)";//"-0.123+2^(1/2)+SIN((40+5)*SIN(89+SIN(90)))+LOG(2*3+4)+5!";//"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; //"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; // 
 
         System.out.println("Normal Calculator: " + NormalInput);
         System.out.println(integerCalc(NormalInput));
