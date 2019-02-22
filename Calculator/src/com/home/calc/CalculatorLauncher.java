@@ -304,7 +304,7 @@ public class CalculatorLauncher {
             }
             else // +-*/ ±‚»£ 
             {
-                Double dNum = GetTriValue(strNum);
+                Double dNum = 0.0;
                 if (!strNum.equals(""))
                     dNum = GetTriValue(strNum);
                 
