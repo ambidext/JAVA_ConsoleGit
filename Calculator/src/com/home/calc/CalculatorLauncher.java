@@ -208,7 +208,7 @@ public class CalculatorLauncher {
         // 숫자 추출 & 10진수 변환
         for (int i = 0; i < input.length(); i++)
         {
-            if ((input.charAt(i) >= '0' && input.charAt(i) <= '9') || (input.charAt(i) == 'x') || input.charAt(i) == 'b')
+            if ((input.charAt(i) >= '0' && input.charAt(i) <= '9') || (input.charAt(i) >= 'A' && input.charAt(i) <= 'F') || (input.charAt(i) == 'x') || input.charAt(i) == 'b')
             {
                 strNum += input.charAt(i);
             }
@@ -451,7 +451,7 @@ public class CalculatorLauncher {
     
 	public static void main(String[] args) {		
         String NormalInput = "-3/0";//"12+3*(7+3*2)+19/(3*(3/2))";// "-2+5*7+19/((2+1)*(2+1))";//
-        String ProgrammerInput = "1/(5*2-10)"; //"11b+(0x11*10b+1)-9";//"10b+0x23+9/3";//
+        String ProgrammerInput = "0x0A+100b+5"; //"11b+(0x11*10b+1)-9";//"10b+0x23+9/3";//
         String EngineeringInput = "5/(2.0-2.0)";//"-0.123+2^(1/2)+SIN((40+5)*SIN(89+SIN(90)))+LOG(2*3+4)+5!";//"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; //"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; // 
 
         System.out.println("Normal Calculator: " + NormalInput);
