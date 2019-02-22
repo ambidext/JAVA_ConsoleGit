@@ -11,6 +11,14 @@ public class CalculatorLauncher {
 			return true;
 		return false;
 	}
+	
+	static boolean IsDigit(char ch)
+	{
+		if ((ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'F')|| (ch == 'x') || (ch == 'b') || (ch == '.'))
+			return true;
+		return false;
+	}
+	
     static String IntCalc(String input)
     {
         String result = "";
@@ -25,7 +33,7 @@ public class CalculatorLauncher {
         int PlusMinus = 1;
         for (int i = 0; i < input.length(); i++)
         {
-            if (input.charAt(i) >= '0' && input.charAt(i) <= '9')
+            if (IsDigit(input.charAt(i)))
             {
                 strNum += input.charAt(i); 
             }
@@ -208,7 +216,7 @@ public class CalculatorLauncher {
         // 숫자 추출 & 10진수 변환
         for (int i = 0; i < input.length(); i++)
         {
-            if ((input.charAt(i) >= '0' && input.charAt(i) <= '9') || (input.charAt(i) >= 'A' && input.charAt(i) <= 'F') || (input.charAt(i) == 'x') || input.charAt(i) == 'b')
+            if (IsDigit(input.charAt(i)))
             {
                 strNum += input.charAt(i);
             }
@@ -284,7 +292,7 @@ public class CalculatorLauncher {
         // 숫자 추출 & factorial 처리 
         for (int i = 0; i < input.length(); i++)
         { 
-            if (input.charAt(i) >= '0' && input.charAt(i) <= '9' || input.charAt(i) == '.' || input.charAt(i) == 'S' || input.charAt(i) == 'C' || input.charAt(i) == 'T' || input.charAt(i) == 'L')
+            if (IsDigit(input.charAt(i)) || input.charAt(i) == 'S' || input.charAt(i) == 'C' || input.charAt(i) == 'T' || input.charAt(i) == 'L')
             {
                 strNum += input.charAt(i);
             }
