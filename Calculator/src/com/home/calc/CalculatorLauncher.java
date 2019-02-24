@@ -40,7 +40,7 @@ public class CalculatorLauncher {
             else // +-*/ 기호 
             {
             	if (!strNum.equals(""))
-            	    numStack.push(Integer.parseInt(strNum)*(PlusMinus)+"");
+            	    numStack.push(Integer.parseInt(strNum)*PlusMinus+"");
             	
             	if (IsSymbol(numStack.peek()))
             	{
@@ -58,7 +58,7 @@ public class CalculatorLauncher {
         }
         if (strNum != "")
         {                
-        	numStack.push(Integer.parseInt(strNum)*(PlusMinus)+"");
+        	numStack.push(Integer.parseInt(strNum)*PlusMinus+"");
         }
 
         // 곱하기, 나누기 처리 
@@ -455,12 +455,12 @@ public class CalculatorLauncher {
         //------------------------------
 
         return result;
-    }
+    }   
     
-	public static void main(String[] args) {		
-        String NormalInput = "-3/0";//"12+3*(7+3*2)+19/(3*(3/2))";// "-2+5*7+19/((2+1)*(2+1))";//
-        String ProgrammerInput = "0x0A+100b+5"; //"11b+(0x11*10b+1)-9";//"10b+0x23+9/3";//
-        String EngineeringInput = "5/(2.0-2.0)";//"-0.123+2^(1/2)+SIN((40+5)*SIN(89+SIN(90)))+LOG(2*3+4)+5!";//"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; //"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; // 
+	public static void main(String[] args) {
+        String NormalInput = "12+3*(7+3*2)+19/(3*(3/2))";// "-2+5*7+19/((2+1)*(2+1))";//
+        String ProgrammerInput = "11b+(0x11*10b+1)-9";//"10b+0x23+9/3";//
+        String EngineeringInput = "-0.123+2^(1/2)+SIN((40+5)*SIN(89+SIN(90)))+LOG(2*3+4)+5!";//"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; //"-2+2^(1/2)+SIN((40+5)*2)+LOG(2*3+4)+5!"; // 
 
         System.out.println("Normal Calculator: " + NormalInput);
         System.out.println(integerCalc(NormalInput));
@@ -469,6 +469,6 @@ public class CalculatorLauncher {
         System.out.println(ProgrammerCalc(ProgrammerInput));
         System.out.println();
         System.out.println("Engineering Calculator: " + EngineeringInput);
-        System.out.println(EngineeringCalc(EngineeringInput));
+        System.out.println(EngineeringCalc(EngineeringInput));        
 	}
 }
